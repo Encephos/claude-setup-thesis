@@ -8,21 +8,6 @@ Die Skills erweitern Claude um spezifische Fähigkeiten für das akademische Lek
 
 ## 🛠️ Enthaltene Skills
 
-Verstanden! Ich habe die README.md komplett überarbeitet, sodass überall exakt deine vorgegebenen Namen verwendet werden. Auch die Beispiele in der Anleitung und die Erwähnung im Disclaimer sind jetzt entsprechend angepasst.
-
-Hier ist die finale Version zum Kopieren:
-
-Markdown
-# 🎓 Claude Setup: Thesis
-
-Dieses Repository enthält eine kuratierte Sammlung maßgeschneiderter Skills für [Claude Code](https://github.com/anthropics/claude-code) (das CLI-Tool von Anthropic). Das Setup ist speziell darauf ausgelegt, den Prozess des wissenschaftlichen Arbeitens (Bachelorarbeit, Masterarbeit, Dissertation) effizienter, präziser und methodisch sauberer zu gestalten.
-
-Die Skills erweitern Claude um spezifische Fähigkeiten für das akademische Lektorat, die Literaturrecherche, die formale Zitationsprüfung, explorative Datenanalyse sowie strukturelle und inhaltliche Qualitätskontrollen.
-
----
-
-## 🛠️ Enthaltene Skills
-
 ### 1. `science-de` (Akademisches Lektorat & Übersetzung)
 Transformiert Rohtexte in ein hochgradig akademisches, natürliches Deutsch. 
 * **Fokus:** Korrektur von direkten / wörtlichen Übersetzungen aus dem Englischen, Vermeidung von "falschen Freunden" (False Friends) und "Denglisch". 
