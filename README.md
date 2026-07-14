@@ -8,24 +8,39 @@ Die Skills erweitern Claude um spezifische Fähigkeiten für das akademische Lek
 
 ## 🛠️ Enthaltene Skills
 
+Verstanden! Ich habe die README.md komplett überarbeitet, sodass überall exakt deine vorgegebenen Namen verwendet werden. Auch die Beispiele in der Anleitung und die Erwähnung im Disclaimer sind jetzt entsprechend angepasst.
+
+Hier ist die finale Version zum Kopieren:
+
+Markdown
+# 🎓 Claude Setup: Thesis
+
+Dieses Repository enthält eine kuratierte Sammlung maßgeschneiderter Skills für [Claude Code](https://github.com/anthropics/claude-code) (das CLI-Tool von Anthropic). Das Setup ist speziell darauf ausgelegt, den Prozess des wissenschaftlichen Arbeitens (Bachelorarbeit, Masterarbeit, Dissertation) effizienter, präziser und methodisch sauberer zu gestalten.
+
+Die Skills erweitern Claude um spezifische Fähigkeiten für das akademische Lektorat, die Literaturrecherche, die formale Zitationsprüfung, explorative Datenanalyse sowie strukturelle und inhaltliche Qualitätskontrollen.
+
+---
+
+## 🛠️ Enthaltene Skills
+
 ### 1. `science-de` (Akademisches Lektorat & Übersetzung)
 Transformiert Rohtexte in ein hochgradig akademisches, natürliches Deutsch. 
 * **Fokus:** Korrektur von direkten / wörtlichen Übersetzungen aus dem Englischen, Vermeidung von "falschen Freunden" (False Friends) und "Denglisch". 
 * **Stil:** Wendet strikt den deutschen Wissenschaftsstil an (Nominalstil, Passiv/unpersönliche Konstruktionen, Objektivität).
 
-### 2. `quellen-check` (Zitations- & Belegprüfung)
+### 2. `citation-checker` (Zitations- & Belegprüfung)
 Agiert als penibler akademischer Gutachter für Literaturangaben und Zitate.
 * **Fokus:** Prüft die formale Vollständigkeit (Standardzitierweisen, Abrufdaten für URLs, Versionsnummern bei ArXiv-Preprints).
 * **Validierung:** Gleicht aufgestellte Behauptungen im Text mit den zitierten Quellen ab, um Überinterpretationen (Overclaiming) zu verhindern.
 
-### 3. `quellen-finder` (Native Literaturrecherche)
+### 3. `citation-finder` (Native Literaturrecherche)
 Nutzt Claudes integrierte Websuche, um verlässliche wissenschaftliche Literatur zu recherchieren.
 * **Fokus:** Verwendet gezielte akademische Suchoperatoren (z. B. `site:arxiv.org`, `site:semanticscholar.org`), um SEO-Spam zu filtern.
 * **Anti-Halluzination:** Jede ausgegebene Quelle muss durch echte DOIs oder Links verifiziert sein.
 
-### 4. `datenauswerter` (Explorative Datenanalyse)
+### 4. `data-analyzer` (Explorative Datenanalyse)
 Ein automatisierter Data-Science-Agent, der einen kompletten Ordner analysiert.
-* **Fokus:** Extrahiert Daten aus CSVs, Tabellen oder Texten (oftmals durch temporäre Python-Skripten wie `pandas`).
+* **Fokus:** Extrahiert Daten aus CSVs, Tabellen oder Texten (oftmals durch temporäre Python-Skripte wie `pandas`).
 * **Analyse:** Identifiziert systemübergreifende Korrelationen, Muster und Zusammenhänge. Stellt datengetriebene Hypothesen für mögliche Kausalitäten auf.
 
 ### 5. `devils-advocate` (Kritischer Peer-Reviewer)
@@ -33,12 +48,12 @@ Unterzieht deine Argumentation und Methodik einem gnadenlosen Stresstest.
 * **Fokus:** Deckt logische Fehlschlüsse, unbegründete Annahmen und methodische Schwächen (z. B. Biases) auf.
 * **Nutzen:** Liefert präventive Gegenargumente, damit du deine Arbeit unangreifbar machen kannst, bevor der Betreuer sie liest.
 
-### 6. `abstract-gen` (Der Kondensator)
+### 6. `abstract-condenser` (Der Kondensator)
 Kondensiert Forschungsergebnisse, einzelne Kapitel oder ganze Arbeiten in präzise Abstracts.
 * **Fokus:** Sorgt für die exakte Einhaltung von Wortlimits (z. B. max. 250 Wörter) und die korrekte Gewichtung von Hintergrund, Methodik, Ergebnissen und Fazit.
 * **Zusatz:** Generiert automatisch passende akademische Keywords.
 
-### 7. `structure-logic-check` (Der Rote Faden)
+### 7. `structure-logic-checker` (Der Rote Faden)
 Prüft die Makro- und Mikrostruktur deiner Arbeit auf Logik und Kohärenz.
 * **Fokus (Makro):** Analysiert Inhaltsverzeichnisse auf logischen Aufbau und sinnvolle Gewichtung.
 * **Fokus (Mikro):** Untersucht Kapitel auf fließende Übergänge (Transitions), identifiziert inhaltliche Abschweifungen zum Kürzen und deckt Argumentationsbrüche auf.
