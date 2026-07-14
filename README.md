@@ -1,4 +1,3 @@
-# claude-setup-thesis
 # 🎓 Claude Setup: Thesis
 
 Dieses Repository enthält eine kuratierte Sammlung maßgeschneiderter Skills für [Claude Code](https://github.com/anthropics/claude-code) (das CLI-Tool von Anthropic). Das Setup ist speziell darauf ausgelegt, den Prozess des wissenschaftlichen Arbeitens (Bachelorarbeit, Masterarbeit, Dissertation) effizienter, präziser und methodisch sauberer zu gestalten.
