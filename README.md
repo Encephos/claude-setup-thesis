@@ -43,6 +43,61 @@ Prüft die Makro- und Mikrostruktur deiner Arbeit auf Logik und Kohärenz.
 * **Fokus (Makro):** Analysiert Inhaltsverzeichnisse auf logischen Aufbau und sinnvolle Gewichtung.
 * **Fokus (Mikro):** Untersucht Kapitel auf fließende Übergänge (Transitions), identifiziert inhaltliche Abschweifungen zum Kürzen und deckt Argumentationsbrüche auf.
 
+### 8. `latex-thesis` (Satz, Kompilierung & visuelle Prüfung)
+Der technische Kern für die Produktion. Erstellt und kompiliert die Arbeit und weist selbst nach, dass das PDF fehlerfrei ist.
+* **Fokus:** Vollständige Kompilierkette (`pdflatex` → `biber` → `pdflatex` × 2), Diagnose von Fehlern, Overfull-Boxen und offenen Verweisen aus dem `.log`.
+* **Visuelle Prüfung:** Rendert Seiten zu Bildern und prüft Abbildungen, Tabellen, Float-Platzierung, Leerflächen und Seitenzahlen – nichts wird nur behauptet.
+* **Erprobte Fixes:** Seitenzahlen auf Kapitelseiten, fortlaufender Kapitel-Fließtext, Float-Leerraum, Tabellen-Überlauf, Silbentrennung, Literatur-Sortierung (`sorting=none`), einheitliches „et al.", Unterdrückung von „Ebd.".
+
+### 9. `figures-diagrams` (Wissenschaftliche Abbildungen)
+Ersetzt Handskizzen durch reproduzierbare Vektorgrafiken.
+* **Fokus:** Rendert Mermaid-Diagramme mit der mermaid-CLI passgenau zu PDF (`mmdc -f`) und bindet sie ein; TikZ für einfache Kasten-Pfeil-Schemata.
+* **Konsistenz:** Prüft, ob die Abbildung (Knotenzahl, Beschriftungen, Schwellenwerte) tatsächlich zum Fließtext passt.
+
+### 10. `style-guard` (Stil- & Konsistenz-Linter)
+Findet und meldet Stilverstöße – ohne den Text umzuschreiben.
+* **Fokus:** rhetorische Fragen, Gedankenstriche, Semikolons/Halbsatz-Doppelpunkte, Füll-/Ankündigungssätze, Anglizismen, gemischte Zitierkürzel, uneinheitliche Terminologie.
+* **Ausgabe:** jede Fundstelle als `Datei:Zeile` mit minimalem Korrekturvorschlag. Ergänzt `science-de` (das umschreibt) um eine reine Prüf-Sicht.
+
+### 11. `revision-implementer` (Minimalinvasive Überarbeitung)
+Setzt eine nummerierte Kritikliste des Betreuers Punkt für Punkt um.
+* **Fokus:** kleinstmöglicher Eingriff pro Punkt, kein ungefragtes Umstrukturieren oder Hinzuerfinden von Inhalten.
+* **Nutzen:** Verifiziert jede Änderung einzeln und liefert eine Vergleichstabelle „Vorher/Nachher" gegen die Ausgangsfassung.
+
+### 12. `data-grounding` (Belege aus echten Daten)
+Verankert Zahlen und Beispiele im Text in echten Projektdaten statt in erfundenen Werten.
+* **Fokus:** extrahiert konkrete Werte aus Logs, Messreihen oder CSVs und formt daraus nachvollziehbare In-Text-Beispiele und Tabellen.
+* **Nutzen:** jede Zahl ist auf eine Quelle (Lauf-ID, Zeile, Feld) zurückführbar; abgeleitete Werte werden offen nachgerechnet.
+
+### 13. `defense-prep` (Kolloquium & Verteidigung)
+Bereitet auf die mündliche Prüfung vor.
+* **Fokus:** wahrscheinliche Prüferfragen pro Kapitel, angreifbare Stellen, souveräne Musterantworten, prägnanter Beitrags-Pitch.
+
+---
+
+## 🤖 Enthaltene Agenten
+
+Neben den Skills (die eine Fähigkeit für die aktuelle Sitzung nachladen) enthält das Setup zwei **Agenten** in `.claude/agents/`. Agenten arbeiten mehrschrittig und autonom in einem eigenen Kontext und geben am Ende ein fertiges Ergebnis zurück.
+
+### `thesis-reviewer` (Gutachter, read-only)
+Begutachtet eine Datei, ein Kapitel oder das ganze Projekt in einem Durchgang über mehrere Dimensionen (Struktur, Stil, Zitierpraxis, Logik/Methodik) und liefert einen nach Schweregrad geordneten, belegten Befundbericht. Ändert keine Dateien.
+
+### `latex-fixer` (Build- & Layout-Agent)
+Kompiliert die Arbeit autonom über die volle Kette, diagnostiziert Fehler und Layoutprobleme, prüft die betroffenen Seiten visuell und behebt sie minimal, bis das PDF sauber ist.
+
+---
+
+## 🔄 Empfohlener Arbeitsablauf
+
+Die Skills und Agenten decken den gesamten Lebenszyklus einer Arbeit ab:
+
+1. **Recherche:** `citation-finder` → Quellen finden.
+2. **Schreiben:** Rohtext verfassen, mit `science-de` ins akademische Deutsch überführen, Abbildungen mit `figures-diagrams` erzeugen, Zahlen mit `data-grounding` belegen.
+3. **Setzen:** mit `latex-thesis` kompilieren und das Layout absichern.
+4. **Prüfen:** `style-guard` (Stil), `citation-checker` (Belege), `structure-logic-checker` (roter Faden), `devils-advocate` (Kritik) – oder in einem Rutsch der Agent `thesis-reviewer`.
+5. **Überarbeiten:** die Betreuer-Kritik mit `revision-implementer` minimalinvasiv umsetzen; Layoutfehler mit `latex-fixer`.
+6. **Abschluss:** `abstract-condenser` für den Abstract, `defense-prep` für die Verteidigung.
+
 ---
 
 ## 🚀 Installation
@@ -50,21 +105,23 @@ Prüft die Makro- und Mikrostruktur deiner Arbeit auf Logik und Kohärenz.
 Du kannst diese Skills entweder global (für deinen gesamten Rechner) oder lokal (nur für das Verzeichnis deiner Abschlussarbeit) installieren.
 
 ### Option A: Globale Installation (Empfohlen)
-Kopiere die Ordner der Skills in das globale Claude Code Skill-Verzeichnis:
+Kopiere Skills und Agenten in die globalen Claude-Code-Verzeichnisse:
 ```bash
-# Erstelle den Ordner, falls er nicht existiert
-mkdir -p ~/.claude/skills
+# Erstelle die Ordner, falls sie nicht existieren
+mkdir -p ~/.claude/skills ~/.claude/agents
 
-# Kopiere die Skills aus diesem Repo in das globale Verzeichnis
-cp -r skills/* ~/.claude/skills/
+# Kopiere Skills und Agenten aus diesem Repo in die globalen Verzeichnisse
+cp -r .claude/skills/* ~/.claude/skills/
+cp -r .claude/agents/* ~/.claude/agents/
 ```
 
 ### Option B: Lokale Installation (Pro Projekt)
-Wenn du die Skills nur in einem bestimmten Projektverzeichnis nutzen möchtest, erstelle dort einen .claude/skills/ Ordner und lege die Dateien ab:
+Wenn du Skills und Agenten nur in einem bestimmten Projektverzeichnis nutzen möchtest, kopiere den `.claude/`-Ordner dorthin:
 ```bash
 cd /pfad/zu/deiner/thesis
-mkdir -p .claude/skills
-cp -r /pfad/zu/claude-setup-thesis/skills/* .claude/skills/
+mkdir -p .claude/skills .claude/agents
+cp -r /pfad/zu/claude-setup-thesis/.claude/skills/* .claude/skills/
+cp -r /pfad/zu/claude-setup-thesis/.claude/agents/* .claude/agents/
 ```
 ## 💡 Nutzung
 Starte Claude Code in deinem Terminal (claude). Du kannst die Skills nun auf zwei Arten verwenden:
