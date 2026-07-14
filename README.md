@@ -2,7 +2,7 @@
 
 Dieses Repository enthält eine kuratierte Sammlung maßgeschneiderter Skills für [Claude Code](https://github.com/anthropics/claude-code) (das CLI-Tool von Anthropic). Das Setup ist speziell darauf ausgelegt, den Prozess des wissenschaftlichen Arbeitens (Bachelorarbeit, Masterarbeit, Dissertation) effizienter, präziser und methodisch sauberer zu gestalten.
 
-Die Skills erweitern Claude um spezifische Fähigkeiten für das akademische Lektorat, die Literaturrecherche, die formale Zitationsprüfung, explorative Datenanalyse sowie strukturelle und inhaltliche Qualitätskontrollen.
+Die Skills erweitern Claude um spezifische Fähigkeiten für das akademische Lektorat, die Literaturrecherche, die formale Zitationsprüfung, explorative Datenanalyse sowie strukturelle und inhaltliche Qualitätskontrollen. Die mitgelieferte `CLAUDE.md` gibt zusätzlich projektweite Leitplanken (z. B. minimalinvasive Überarbeitung, Belegpflicht für Beispiele), die automatisch gelten, sobald Claude Code in diesem Verzeichnis läuft.
 
 ---
 
@@ -100,7 +100,23 @@ Die Skills und Agenten decken den gesamten Lebenszyklus einer Arbeit ab:
 
 ---
 
-## 🚀 Installation
+## ⚡ Ordner teilen, ohne dass andere manuell etwas installieren müssen
+
+Der ganze Ordner (inkl. `.claude/`, `CLAUDE.md`, `scripts/`) lässt sich direkt weitergeben – z. B. an Kommilitonen, die selbst schon Claude Code nutzen (etwa über Claude Desktop). `CLAUDE.md` weist Claude an, beim ersten Start in diesem Ordner selbst zu prüfen, ob `pdflatex`, `mmdc` (mermaid-CLI) und Python/pandas vorhanden sind, und bei Bedarf automatisch `scripts/setup-native.sh` auszuführen (macOS, per Homebrew, überspringt bereits vorhandene Werkzeuge) – erst danach beginnt die eigentliche Arbeit mit den Skills/Agenten. Git, gh und Claude Code selbst werden als bereits vorhanden vorausgesetzt.
+
+```bash
+# Ordner kopieren/klonen, dann einfach:
+claude
+# → prüft Voraussetzungen, installiert bei Bedarf automatisch nach, legt los
+```
+
+Wer das Setup lieber selbst anstößt statt es Claude überlassen: `./scripts/setup-native.sh` manuell ausführen.
+
+---
+
+## 🚀 Installation (nur Skills/Agenten, eigenes Toolchain vorhanden)
+
+Wer LaTeX, Node.js und Python bereits selbst installiert hat und nur die Skills/Agenten nachrüsten möchte, kann sie einzeln kopieren – ohne `scripts/setup-native.sh`.
 
 Du kannst diese Skills entweder global (für deinen gesamten Rechner) oder lokal (nur für das Verzeichnis deiner Abschlussarbeit) installieren.
 
